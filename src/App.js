@@ -1,23 +1,43 @@
 import logo from './logo.svg';
 import './App.css';
+import StarIcon from '@mui/icons-material/Star';
+import { useState } from 'react';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+const startarray = Array(5).fill(0);
+
+const [ starcount, setstarcount] = useState();
+
+const HandleClick = (indexcount) => {
+
+  if(starcount == indexcount) {
+    setstarcount(indexcount-1);
+  } else {
+    setstarcount(indexcount);
+  }
+  
+
+}
+
+const startcolor = {
+  gray: "gray",
+  solomon: "lightsalmon"
+}
+
+
+return (
+    <div className='container'>
+      <h2>Start rating in React</h2>
+      <div>
+        { startarray.map((start, index) => (
+            (index < starcount) ? <StarIcon onClick = {()=> HandleClick(index+1)} sx={{fontSize:"3.5rem", color:"red"}}/> : 
+            <StarIcon onClick = {()=> HandleClick(index+1)} sx={{fontSize:"3.5rem", color:"gray"}}/>
+        ))}
+          
+      </div>
     </div>
   );
 }
